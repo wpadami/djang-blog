@@ -1,2 +1,2 @@
 # djang-blog
-Django Blog Altyapısı (SQLite3)
+Django Blog Altyapısı (MySQL)
