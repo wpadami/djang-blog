@@ -69,8 +69,8 @@ DATABASES = {
         'HOST': '127.0.0.1',
         'PORT' : '3306',
         'NAME': 'django_blog',
-        'USER': 'root',
-        'PASSWORD': '5640609',
+        'USER': 'djangblog',
+        'PASSWORD': 'djangblogtest',
         'CHARSET' : 'utf8mb4',
     }
 }
