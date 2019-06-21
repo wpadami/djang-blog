@@ -1,7 +1,7 @@
 <h1>Articles</h1>
 <ul>
 {% for blog in object_list %}
-    <li><a class="post" href="{% url 'blog:detail' blog.category.cat_slug blog.slug %}">{{ blog.title }}<span>{{ blog.created_on | date }}</a></li>
+    <li><a class="post" href="{% url 'blog:blog-detail' blog.category.cat_slug blog.slug %}">{{ blog.title }}<span> {{ blog.created_on | date }}</a></li>
 {% empty %}
     <li>No articles yet.</li>
 {% endfor %}

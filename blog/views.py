@@ -6,7 +6,7 @@ from django.utils import timezone
 
 from .models import Post
 
-class IndexView(generic.ListView):
+class BlogIndexView(generic.ListView):
     model = Post
     #paginate_by = 12
     template_name = 'blog/index.html'
@@ -16,11 +16,8 @@ class IndexView(generic.ListView):
         context['now'] = timezone.now()
         return context
 
-class DetailedView(generic.DetailView):
-    model = Post
-    template_name = 'blog/detail.html'
+def detail(request, cat_slug, slug):
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['now'] = timezone.now()
-        return context
+    post = get_object_or_404(Post, slug=slug)
+    contextos =  {'post': post, 'now': timezone.now()}
+    return render(request, 'blog/detail.html',contextos)
