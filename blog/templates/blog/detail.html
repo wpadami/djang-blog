@@ -1,3 +1,4 @@
+{% include "blog/header.html" with title=post.title %}
 <h1>{{ post.title }}</h1>
 <p>{{ post.content }}</p>
 <p>Reporter: {{ post.author }}</p>
@@ -5,3 +6,5 @@
 <p>Date: {{ now|date }}</p>
 
 <a class="post" href="{% url 'blog:blog-index' %}">Anasayfa</a>
+
+{% include "blog/footer.html" %}

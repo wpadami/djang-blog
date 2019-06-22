@@ -16,13 +16,22 @@ class BlogIndexView(generic.ListView):
         context['now'] = timezone.now()
         return context
 
-def detail(request, cat_slug, slug):
+class DetailedView(generic.DetailView):
+    model = Post
+    template_name = "blog/detail.html"
 
-    post = get_object_or_404(Post, slug=slug)
-    contextos =  {'post': post, 'now': timezone.now()}
-    return render(request, 'blog/detail.html', contextos)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
 
-def catDetail(request, cat_slug):
-    category = get_object_or_404(Category, cat_slug=cat_slug)
-    post_list = Post.objects.order_by('-created_on').filter(category_id=category.id)
-    return render(request, 'blog/cat_index.html', {'post_list':post_list})
+class CategoryListView(generic.ListView):
+    model = Category
+    template_name = "blog/cat_index.html"
+
+    def get_context_data(self, **kwargs):
+        category  = get_object_or_404(Category, cat_slug=self.kwargs.get('cat_slug'))
+        context = super().get_context_data(**kwargs)
+        context.update({
+            'post_list': Post.objects.order_by('-created_on').filter(category_id=category.id),
+        })
+        return context
