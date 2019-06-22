@@ -1,6 +1,6 @@
 {% include "blog/header.html" with title=post.title %}
 <h1>{{ post.title }}</h1>
-<p>{{ post.content }}</p>
+<p>{{ post.content | safe }}</p>
 <p>Reporter: {{ post.author }}</p>
 <p>Published: {{ post.created_on|date }}</p>
 <p>Date: {{ now|date }}</p>

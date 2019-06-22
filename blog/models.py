@@ -4,6 +4,8 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from slugify import slugify
+from ckeditor.fields import RichTextField
+
 
 # Create your models here.
 
@@ -28,7 +30,8 @@ class Post(models.Model):
     title = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200, default="", blank=True, unique=True)
     category = models.ForeignKey(Category, blank=True, on_delete=models.CASCADE)
-    content = models.TextField()
+    #content = models.TextField()
+    content = RichTextField()
     author = models.ForeignKey(User, blank=True, on_delete= models.CASCADE,related_name='blog')
     updated_on = models.DateTimeField(auto_now= True)
     created_on = models.DateTimeField(auto_now_add=True)
